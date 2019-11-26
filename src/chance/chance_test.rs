@@ -27,8 +27,9 @@ fn the_chance_of_minus_10_should_be_out_of_bounds() {
 }
 
 #[test]
-fn the_chance_of_75_should_equal_likely() {
-    assert_eq!(*LIKELY, Chance::new(0.75).unwrap());
+fn the_chance_of_75_should_equal_likely() -> Result<(), ChanceError> {
+    assert_eq!(*LIKELY, Chance::new(0.75)?);
+    Ok(())
 }
 
 #[test]
@@ -67,18 +68,21 @@ fn chances_with_values_13_and_0_together_should_be_0() {
 }
 
 #[test]
-fn chances_with_values_100_and_75_and_50_together_should_be_3_75() {
-    assert_eq!(Chance::new(0.375).unwrap(), *CERTAIN & *LIKELY & *EQUALLY_LIKELY);
+fn chances_with_values_100_and_75_and_50_together_should_be_3_75() -> Result<(), ChanceError> {
+    assert_eq!(Chance::new(0.375)?, *CERTAIN & *LIKELY & *EQUALLY_LIKELY);
+    Ok(())
 }
 
 #[test]
-fn chances_of_75_or_75_should_be_93_75() {
-    assert_eq!(Chance::new(0.9375).unwrap(), *LIKELY | *LIKELY);
+fn chances_of_75_or_75_should_be_93_75() -> Result<(), ChanceError> {
+    assert_eq!(Chance::new(0.9375)?, *LIKELY | *LIKELY);
+    Ok(())
 }
 
 #[test]
-fn sequence_of_4_chances_of_75_should_be_99_609375() {
-    assert_eq!(Chance::new(0.99609375).unwrap(), *LIKELY | *LIKELY | *LIKELY | *LIKELY);
+fn sequence_of_4_chances_of_75_should_be_99_609375() -> Result<(), ChanceError> {
+    assert_eq!(Chance::new(0.99609375)?, *LIKELY | *LIKELY | *LIKELY | *LIKELY);
+    Ok(())
 }
 
 #[test]
